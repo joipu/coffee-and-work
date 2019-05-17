@@ -1,5 +1,5 @@
 {
-  "name": "yelp-camp",
+  "name": "coffee-and-work",
   "version": "0.0.0",
   "private": true,
   "scripts": {
@@ -10,6 +10,7 @@
     "connect-flash": "^0.1.1",
     "cookie-parser": "~1.4.4",
     "debug": "~2.6.9",
+    "dotenv": "^8.0.0",
     "ejs": "^2.6.1",
     "express": "~4.16.1",
     "express-session": "^1.16.1",
@@ -18,6 +19,7 @@
     "method-override": "^3.0.0",
     "mongoose": "^5.5.7",
     "morgan": "~1.9.1",
+    "node-geocoder": "^3.22.0",
     "passport": "^0.4.0",
     "passport-local": "^1.0.0",
     "passport-local-mongoose": "^5.0.1",

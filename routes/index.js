@@ -6,7 +6,6 @@ var User = require('../models/user');
 /* GET home page. */
 router.get('/', function(req, res, next) {
   res.render('landing');
-  //res.render('index', { title: 'Express' });
 });
 
 // Show register form
@@ -19,11 +18,11 @@ router.post('/register', function(req,res) {
   var newUser = new User({username: req.body.username});
   User.register(newUser, req.body.password, function(err, user){
     if (err) {
-      req.flash("error", err.message);
+      req.flash('error', err.message);
       res.redirect('/register');
     }
     passport.authenticate('local')(req, res, function(){
-      req.flash("success", "You are successfully signed up. Welcome to Coffee & Work, " + user.username + "!");
+      req.flash('success', 'You are successfully signed up. Welcome to Coffee & Work, ' + user.username + '!');
       res.redirect('/shops');
     });
   });
@@ -37,10 +36,11 @@ router.get('/login', function(req, res){
 
 // Handle log-in logic
 // app.post('/login', middleware, callback)
-router.post('/login', passport.authenticate("local",
+router.post('/login', passport.authenticate('local',
     {
-      successRedirect: "/shops",
-      failureRedirect: "/login",
+      successRedirect: '/shops',
+      failureRedirect: '/login',
+      successFlash: 'Successfully logged in. Welcome back!',
       failureFlash: true
     }), function(req, res){
 });
@@ -48,7 +48,7 @@ router.post('/login', passport.authenticate("local",
 // Show logout route
 router.get('/logout', function(req, res){
   req.logout();
-  req.flash("success", "You are logged out");
+  req.flash('success', 'You are logged out');
   res.redirect('/shops');
 });
 

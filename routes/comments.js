@@ -27,7 +27,7 @@ router.post('/', middleware.isLoggedIn, function (req, res) {
             // create new comment
             Comment.create(req.body.comment, function(err, comment){
                 if (err) {
-                    req.flash("error", "Something went wrong");
+                    req.flash('error', 'Something went wrong');
                     console.log(err);
                 } else {
                     // add username and id to comment
@@ -39,7 +39,7 @@ router.post('/', middleware.isLoggedIn, function (req, res) {
                     shop.comments.push(comment);
                     shop.save();
                     // redirect to /shops/:id
-                    req.flash("success", "Successfully added comment");
+                    req.flash('success', 'Successfully added comment');
                     res.redirect('/shops/' + shop._id);
                 }
             });
@@ -51,7 +51,7 @@ router.post('/', middleware.isLoggedIn, function (req, res) {
 router.get('/:comment_id/edit', middleware.checkCommentOwnership, function(req, res){
     Comment.findById(req.params.comment_id, function(err, foundComment){
         if(err){
-            res.redirect("back");
+            res.redirect('back');
         } else {
             res.render('comments/edit', {shop_id: req.params.id, comment: foundComment});
         }
@@ -62,10 +62,10 @@ router.get('/:comment_id/edit', middleware.checkCommentOwnership, function(req, 
 router.put('/:comment_id', middleware.checkCommentOwnership, function(req, res){
     Comment.findByIdAndUpdate(req.params.comment_id, req.body.comment, function(err, updatedComment){
         if (err) {
-            res.redirect("back");
+            res.redirect('back');
         } else {
-            req.flash("success", "Successfully updated comment");
-            res.redirect("/shops/" + req.params.id);
+            req.flash('success', 'Successfully updated comment');
+            res.redirect('/shops/' + req.params.id);
         }
     });
 });
@@ -74,10 +74,10 @@ router.put('/:comment_id', middleware.checkCommentOwnership, function(req, res){
 router.delete('/:comment_id', middleware.checkCommentOwnership, function(req, res){
     Comment.findByIdAndRemove(req.params.comment_id, function(err){
         if (err) {
-            res.redirect("back");
+            res.redirect('back');
         } else {
-            req.flash("success", "Successfully deleted comment");
-            res.redirect("/shops/" + req.params.id);
+            req.flash('success', 'Successfully deleted comment');
+            res.redirect('/shops/' + req.params.id);
         }
     });
 });

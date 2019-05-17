@@ -1,3 +1,5 @@
+require('dotenv').config();
+
 var createError     = require('http-errors'),
     express         = require('express'),
     path            = require('path'),
@@ -9,8 +11,7 @@ var createError     = require('http-errors'),
     passport        = require('passport'),
     LocalStrategy   = require('passport-local'),
     methodOverride  = require('method-override'),
-    User            = require('./models/user'),
-    seedDB          = require('./seeds')
+    User            = require('./models/user')
 
 var indexRouter     = require('./routes/index'),
     commentRouter   = require('./routes/comments'),
@@ -18,8 +19,17 @@ var indexRouter     = require('./routes/index'),
 
 var app = express();
 
-// connect mongoose
-mongoose.connect('mongodb://localhost:27017/coffee_and_work', { useNewUrlParser: true });
+// connect mongoose with environment variable
+// mongoose.connect('mongodb://localhost:27017/coffee_and_work', {useNewUrlParser: true});
+mongoose.connect(process.env.DB_URL, {
+  useNewUrlParser: true,
+  useCreateIndex: true
+}).then(() => {
+  console.log('Connected to DB');
+}).catch(err => {
+  console.log('ERROR:', err.message);
+});
+
 
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(methodOverride('_method'));
@@ -29,12 +39,9 @@ app.use(flash());
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
 
-// start seedDB every time when server starts
-// seedDB();
-
 // Passport Configuration
-app.use(require("express-session")({
-  secret: "Once again Rusty wins cutest dog!",
+app.use(require('express-session')({
+  secret: 'n/a',
   resave: false,
   saveUninitialized: false,
 }));
@@ -47,8 +54,8 @@ passport.deserializeUser(User.deserializeUser());
 // middleware
 app.use(function(req, res, next){
   res.locals.currentUser = req.user;
-  res.locals.error = req.flash("error");
-  res.locals.success = req.flash("success");
+  res.locals.error = req.flash('error');
+  res.locals.success = req.flash('success');
   next();
 });
 
@@ -87,5 +94,5 @@ module.exports = app;
 
 // Start server
 app.listen(process.env.PORT, process.env.IP, function(){
-  console.log("server  starts!");
+  console.log('server  starts!');
 });

@@ -23,6 +23,11 @@
   display: inline;
 }
 
+#map {
+  height: 400px;
+  width: 100%;
+}
+
 body {
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
 }

@@ -29,13 +29,15 @@ Coffee & Work is a Node.js web app project that allows users to post work-friend
 * Bootstrap 3.3.5
 * jQuery 3.4.1
 * EJS
+* Google Maps APIs
 
 ### Backend-end
 * Express.js
-* MongoDB
+* MongoDB, MongoDB Atlas
 * Mongoose
 * Passport, passport-local
 * Connect-flash
+* dotenv
 
 
 
