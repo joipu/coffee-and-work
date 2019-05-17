@@ -3,6 +3,8 @@
 Coffee & Work is a Node.js web app project that allows users to post work-friendly coffee shops and make comments.
 
 
+## D
+
 ## Features
 * A landing page
 * Sign-up and Login page (_Authentication with Passport_)
