@@ -1,9 +1,8 @@
 # Coffee and Work
-## Purpose
-Coffee & Work is a Node.js web app project that allows users to post work-friendly coffee shops and make comments.
+## Introduction
+Coffee & Work is a Node.js web app project that allows users to post work-friendly coffee shops and make comments: 
+https://coffee-and-work.herokuapp.com
 
-
-## D
 
 ## Features
 * A landing page
