@@ -10,7 +10,7 @@ router.get('/', function(req, res, next) {
 
 // Show register form
 router.get('/register', function(req, res){
-  res.render('register');
+  res.render('register', {page: 'register'});
 })
 
 // Handle sign-up logic
@@ -18,8 +18,7 @@ router.post('/register', function(req,res) {
   var newUser = new User({username: req.body.username});
   User.register(newUser, req.body.password, function(err, user){
     if (err) {
-      req.flash('error', err.message);
-      res.redirect('/register');
+      return res.render('register', {error: err.message});
     }
     passport.authenticate('local')(req, res, function(){
       req.flash('success', 'You are successfully signed up. Welcome to Coffee & Work, ' + user.username + '!');
@@ -31,7 +30,7 @@ router.post('/register', function(req,res) {
 
 // Show login form
 router.get('/login', function(req, res){
-  res.render('login');
+  res.render('login', {page: 'register'});
 });
 
 // Handle log-in logic

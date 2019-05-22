@@ -26,7 +26,7 @@ router.get('/', function (req, res) {
             console.log(err);
         } else {
             // Populate all shops data to "shops" in rendered index.ejs
-            res.render('shops/index', {shops: allShops});
+            res.render('shops/index', {shops: allShops, page: 'shops'});
         }
     })
 });
